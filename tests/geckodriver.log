@@ -1,0 +1,49 @@
+1513231509297	geckodriver	INFO	geckodriver 0.19.0
+1513231509313	geckodriver	INFO	Listening on 127.0.0.1:61153
+1513231511328	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\ATIKAW~1\\AppData\\Local\\Temp\\rust_mozprofile.Asydc1z3f4ps"
+1513231513045	addons.xpi	WARN	Error parsing extensions state: [Exception... "Component returned failure code: 0x80520012 (NS_ERROR_FILE_NOT_FOUND) [amIAddonManagerStartup.readStartupData]"  nsresult: "0x80520012 (NS_ERROR_FILE_NOT_FOUND)"  location: "JS frame :: resource://gre/modules/addons/XPIProvider.jsm :: loadExtensionState :: line 1554"  data: no] Stack trace: loadExtensionState()@resource://gre/modules/addons/XPIProvider.jsm:1554 < getInstallState()@resource://gre/modules/addons/XPIProvider.jsm:1589 < checkForChanges()@resource://gre/modules/addons/XPIProvider.jsm:3109 < startup()@resource://gre/modules/addons/XPIProvider.jsm:2188 < callProvider()@resource://gre/modules/AddonManager.jsm:269 < _startProvider()@resource://gre/modules/AddonManager.jsm:739 < startup()@resource://gre/modules/AddonManager.jsm:906 < startup()@resource://gre/modules/AddonManager.jsm:3090 < observe()@jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/addonManager.js:65
+1513231514013	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Atika waheed\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 5848] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1513231518471	Marionette	INFO	Listening on port 61159
+1513231518785	Marionette	WARN	TLS certificate errors will be ignored for this session
+1513231518875	Marionette	DEBUG	Register listener.js for window 6442450945
+1513231518905	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1513231520886	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1513231520887	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1513231520968	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://demo.guru99.com/selenium/newtours/"
+1513231522809	Marionette	DEBUG	Received DOM event "pageshow" for "http://demo.guru99.com/selenium/newtours/"
+1513231523162	Marionette	DEBUG	Received DOM event "beforeunload" for "http://demo.guru99.com/selenium/newtours/"
+1513231524024	Marionette	DEBUG	Received DOM event "pagehide" for "http://demo.guru99.com/selenium/newtours/"
+1513231524025	Marionette	DEBUG	Received DOM event "unload" for "http://demo.guru99.com/selenium/newtours/"
+1513231524047	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://demo.guru99.com/selenium/newtours/index.php"
+1513231524353	Marionette	DEBUG	Received DOM event "pageshow" for "http://demo.guru99.com/selenium/newtours/index.php"
+1513231524450	Marionette	DEBUG	Received DOM event "beforeunload" for "http://demo.guru99.com/selenium/newtours/index.php"
+1513231524750	Marionette	DEBUG	Received DOM event "pagehide" for "http://demo.guru99.com/selenium/newtours/index.php"
+1513231524750	Marionette	DEBUG	Received DOM event "unload" for "http://demo.guru99.com/selenium/newtours/index.php"
+1513231524780	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://demo.guru99.com/selenium/newtours/reservation.php"
+1513231525176	Marionette	DEBUG	Received DOM event "pageshow" for "http://demo.guru99.com/selenium/newtours/reservation.php"
+1513231525591	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231525924	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231526201	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231526488	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231526829	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231527158	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231527530	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231527811	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231528092	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1513231528174	Marionette	DEBUG	Received DOM event "beforeunload" for "http://demo.guru99.com/selenium/newtours/reservation.php"
+1513231528722	Marionette	DEBUG	Received DOM event "pagehide" for "http://demo.guru99.com/selenium/newtours/reservation.php"
+1513231528725	Marionette	DEBUG	Received DOM event "unload" for "http://demo.guru99.com/selenium/newtours/reservation.php"
+1513231528744	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://demo.guru99.com/selenium/newtours/reservation2.php"
+1513231529265	Marionette	DEBUG	Received DOM event "pageshow" for "http://demo.guru99.com/selenium/newtours/reservation2.php"
+1513231539412	Marionette	DEBUG	Received DOM event "beforeunload" for "http://demo.guru99.com/selenium/newtours/reservation2.php"
+1513231540003	Marionette	DEBUG	Received DOM event "pagehide" for "http://demo.guru99.com/selenium/newtours/reservation2.php"
+1513231540004	Marionette	DEBUG	Received DOM event "unload" for "http://demo.guru99.com/selenium/newtours/reservation2.php"
+1513231540019	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://demo.guru99.com/selenium/newtours/support.php"
+1513231540556	Marionette	DEBUG	Received DOM event "pageshow" for "http://demo.guru99.com/selenium/newtours/support.php"
+1513231540660	Marionette	DEBUG	Received DOM event "beforeunload" for "http://demo.guru99.com/selenium/newtours/support.php"
+1513231540922	Marionette	DEBUG	Received DOM event "pagehide" for "http://demo.guru99.com/selenium/newtours/support.php"
+1513231540923	Marionette	DEBUG	Received DOM event "unload" for "http://demo.guru99.com/selenium/newtours/support.php"
+1513231540985	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://demo.guru99.com/selenium/newtours/index.php"
+1513231541226	Marionette	DEBUG	Received DOM event "pageshow" for "http://demo.guru99.com/selenium/newtours/index.php"
