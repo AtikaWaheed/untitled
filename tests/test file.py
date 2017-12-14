@@ -1,10 +1,10 @@
 import unittest
-from selenium.webdriver.common.by import By
+
 from selenium import webdriver
-import Page
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
+
+from pages import Page
+
 
 class PythonOrgSearch(unittest.TestCase):
 
@@ -20,10 +20,10 @@ class PythonOrgSearch(unittest.TestCase):
         assert main_page.matches_the_title()
         main_page.matches_the_title()
         main_page.search_element_by_id()
-        main_page.click_Go_button()
+        main_page.click_go_button()
         WebDriverWait(self.driver, 30)
         assert main_page.is_result_found(), "No results found."
-        main_page.about_Page()
+        main_page.about_page()
 
 
     def tearDown(self):
