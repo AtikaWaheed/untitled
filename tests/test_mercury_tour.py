@@ -1,4 +1,3 @@
-import time
 import unittest
 from selenium import webdriver
 from pages import mercury_tour_page
