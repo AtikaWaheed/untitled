@@ -34,7 +34,6 @@ class MercuryMainPage(unittest.TestCase):
         mt_page.back_click()
         time.sleep(5)
 
-
     def tearDown(self):
         self.driver.close()
 

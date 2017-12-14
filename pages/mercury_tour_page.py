@@ -71,5 +71,3 @@ class MainWelcomePage(BasePage):
 
     def back_click(self):
         self.driver.find_element_by_css_selector('img[src="images/home.gif"]').click()
-
-
