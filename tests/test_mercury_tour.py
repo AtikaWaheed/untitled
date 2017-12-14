@@ -32,7 +32,6 @@ class MercuryMainPage(unittest.TestCase):
         mt_page.hotels_ver_click()
         assert self.driver.find_element_by_css_selector('img[src="images/mast_construction.gif"]')
         mt_page.back_click()
-        time.sleep(5)
 
     def tearDown(self):
         self.driver.close()
