@@ -16,14 +16,11 @@ class MainWelcomePage(BasePage):
         return "Welcome: Mercury Tours" in self.driver.title
 
     def login_cred(self):
-        # Give login cred
+        # Give login cred and click submit
         user_name = self.driver.find_element_by_name('userName')
         user_name.send_keys("admin")
         password_keys = self.driver.find_element_by_name('password')
         password_keys.send_keys("admin")
-
-    def submit_cred(self):
-        # just submit after giving cred
         submit = self.driver.find_element_by_name('submit')
         submit.click()
 
@@ -31,31 +28,40 @@ class MainWelcomePage(BasePage):
         # Move to flights vertical
         self.driver.find_element_by_link_text('Flights').click()
 
-    def flight_details(self):
-        # submit form
-        self.driver.find_element_by_css_selector('input[value="oneway"]').click()
-        time.sleep(5)
+    def pass_count(self):
         passenger = self.driver.find_element_by_name('passCount')
-        departing_port = self.driver.find_element_by_name('fromPort')
-        depart_month = self.driver.find_element_by_name('fromMonth')
-        depart_day = self.driver.find_element_by_name('fromDay')
-        arriving_in = self.driver.find_element_by_name('toPort')
-        return_month = self.driver.find_element_by_name('toMonth')
-        return_date = self.driver.find_element_by_name('toDay')
-        #passenger_list = self.driver.find_element_by_css_selector('option[value="3"]')
-        #actions = ActionChains(self.driver)
-       # actions.move_to_element(passenger).perform()
-        #actions.click(passenger_list)
         Select(passenger).select_by_visible_text("4")
+
+    def from_port(self):
+        departing_port = self.driver.find_element_by_name('fromPort')
         Select(departing_port).select_by_visible_text("Frankfurt")
+
+    def from_month(self):
+        depart_month = self.driver.find_element_by_name('fromMonth')
         Select(depart_month).select_by_visible_text("September")
+
+    def from_day(self):
+        depart_day = self.driver.find_element_by_name('fromDay')
+        Select(depart_day).select_by_visible_text("5")
+
+    def to_port(self):
+        arriving_in = self.driver.find_element_by_name('toPort')
         Select(arriving_in).select_by_visible_text("London")
+
+    def to_month(self):
+        return_month = self.driver.find_element_by_name('toMonth')
         Select(return_month).select_by_visible_text("March")
+
+    def to_day(self):
+        return_date = self.driver.find_element_by_name('toDay')
         Select(return_date).select_by_visible_text("5")
+
+    def sevice_Cred(self):
         service_class = self.driver.find_element_by_css_selector('input[value="Business"]').click()
+
+    def airline_name_select(self):
         airline_name = self.driver.find_element_by_css_selector('select[name="airline"]')
         Select(airline_name).select_by_visible_text("Blue Skies Airlines")
-        time.sleep(5)
 
     def flight_details_submit(self):
         self.driver.find_element_by_css_selector('input[name="findFlights"]').click()
