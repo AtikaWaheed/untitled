@@ -11,7 +11,7 @@ class MainPage(BasePage):
         return "Arbisoft" in self.driver.title
 
     def test_nav_links(self):
-        nav_links = self.driver.find_elements_by_css_selector('ul.nav')
+        nav_links = self.driver.find_elements_by_xpath("/html/body/header/div/div/div[2]/div/div/div/ul")
 
 
 
