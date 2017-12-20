@@ -28,41 +28,51 @@ class MainWelcomePage(BasePage):
         self.driver.find_element_by_link_text('Flights').click()
 
     def pass_count(self, passcount):
+        #Select pass_count
         passenger = self.driver.find_element_by_name('passCount')
         Select(passenger).select_by_visible_text(passcount)
 
     def from_port(self, fromport):
+        #Select from_port
         departing_port = self.driver.find_element_by_name('fromPort')
         Select(departing_port).select_by_visible_text(fromport)
 
     def from_month(self, frommonth):
+        #Select from_month
         depart_month = self.driver.find_element_by_name('fromMonth')
         Select(depart_month).select_by_visible_text(frommonth)
 
     def from_day(self, fromday):
+        #Select from_day
         depart_day = self.driver.find_element_by_name('fromDay')
         Select(depart_day).select_by_visible_text(fromday)
 
     def to_port(self, toport):
+        #Select to_port
         arriving_in = self.driver.find_element_by_name('toPort')
         Select(arriving_in).select_by_visible_text(toport)
 
     def to_month(self, tomonth):
+        #Select to_month
         return_month = self.driver.find_element_by_name('toMonth')
         Select(return_month).select_by_visible_text(tomonth)
 
     def to_day(self, today):
+        #Select to_day
         return_date = self.driver.find_element_by_name('toDay')
         Select(return_date).select_by_visible_text(today)
 
     def sevice_cred(self):
+        #Choose any service
         self.driver.find_element_by_css_selector('input[value="Business"]').click()
 
     def airline_name_select(self, airline):
+        #Select an airline
         airline_name = self.driver.find_element_by_css_selector('select[name="airline"]')
         Select(airline_name).select_by_visible_text(airline)
 
     def flight_det_sub(self):
+        #Found flight details
         self.driver.find_element_by_css_selector('input[name="findFlights"]').click()
 
     def hotels_ver_click(self):
@@ -70,4 +80,5 @@ class MainWelcomePage(BasePage):
         self.driver.find_element_by_link_text('Hotels').click()
 
     def back_click(self):
+        #Moving back to FD
         self.driver.find_element_by_css_selector('img[src="images/home.gif"]').click()
