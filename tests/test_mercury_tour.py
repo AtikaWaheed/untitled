@@ -52,7 +52,7 @@ class MercuryMainPage(unittest.TestCase):
         Verify correct from_month has picked
         """
         f_month = self.mt_page.from_month("September")
-        self.assertEqual(f_month, "September" )
+        self.assertEqual(f_month, "September")
 
     def test_from_day(self):
         """
@@ -115,6 +115,7 @@ class MercuryMainPage(unittest.TestCase):
         Verify page has closed
         """
         self.driver.close()
+
 
 if __name__ == "__main__":
     unittest.main()
