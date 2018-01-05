@@ -10,105 +10,47 @@ class MercuryMainPage(unittest.TestCase):
         Setup driver and initialize class
         """
         self.driver = webdriver.Firefox()
-        self.driver.get("http://demo.guru99.com/selenium/newtours/")
         self.mt_page = mercury_tour_page.MainWelcomePage(self.driver)
+        self.mt_page.visit()
+        assert "Welcome: Mercury Tours" in self.driver.title
 
-    def test_title_matches(self):
+    def test01_login(self):
         """
-        Verify correct page is open
-        """
-        assert self.mt_page.title_matches()
-
-    def test_login(self):
-        """
+        Redirected on correct page
         Verify that user can log in entering valid username and valid password
         """
         self.mt_page.login_cred_submit("admin", "admin")
-        assert self.mt_page.get_logged_in()
 
-    def test_flights_ver_click(self):
+    def test02_open_flight_vertical_by_clicking(self):
         """
-        Verify the exact flight page on display
+        Flights vertical got clicked and page is correct
+        Correct values has been given
+        Submitted Form
+        Moved back to front page
         """
-        self.mt_page.flights_ver_click()
-        assert self.driver.find_element_by_css_selector('img[src="images/mast_flightfinder.gif"]')
+        footer = self.mt_page.open_flight_vertical_by_clicking().split()
+        self.assertEqual(footer[1], "2005,")
+        passcount = self.mt_page.select_passenger("4")
+        self.assertEqual(passcount, "4")
+        fromport = self.mt_page.select_departing_location("Frankfurt")
+        self.assertEqual(fromport, "Frankfurt")
+        fromMonth = self.mt_page.select_departing_month("September")
+        self.assertEqual(fromMonth, "September")
+        fromday = self.mt_page.select_departing_day("5")
+        self.assertEqual(fromday, "5")
+        toport = self.mt_page.select_arriving_port("London")
+        self.assertEqual(toport, "London")
+        tomonth = self.mt_page.select_returning_month("April")
+        self.assertEqual(tomonth, "April")
+        today = self.mt_page.select_returning_day("5")
+        self.assertEqual(today, "5")
+        service = self.mt_page.select_service_class()
 
-    def test_pass_count(self):
-        """
-        Verify correct pass_count number has picked
-        """
-        count = self.mt_page.pass_count("4")
-        self.assertEqual(count, "4")
-
-    def test_from_port(self):
-        """
-        Verify correct from_port has picked
-        """
-        port = self.mt_page.from_port("Frankfurt")
-        self.assertEqual(port, "Frankfurt")
-
-    def test_from_month(self):
-        """
-        Verify correct from_month has picked
-        """
-        f_month = self.mt_page.from_month("September")
-        self.assertEqual(f_month, "September")
-
-    def test_from_day(self):
-        """
-        Verify correct from_day has picked
-        """
-        f_day = self.mt_page.from_day("5")
-        self.assertEqual(f_day, "5")
-
-    def test_to_port(self):
-        """
-        Verify correct to_port has picked
-        """
-        t_port = self.mt_page.to_port("London")
-        self.assertEqual(t_port, "London")
-
-    def test_to_month(self):
-        """
-        Verify correct to_month has picked
-        """
-        t_month = self.mt_page.to_month("March")
-        self.assertEqual(t_month, "March")
-
-    def test_to_day(self):
-        """
-        Verify correct to_day has picked
-        """
-        t_day = self.mt_page.to_day("5")
-        self.assertEqual(t_day, "5")
-
-    def test_sevice_cred(self):
-        """
-        Verify service_cred has picked correct and selected also
-        """
-        s_cred = self.mt_page.sevice_cred()
-        assert self.driver.find_element_by_css_selector('input[value="Business"]').text() == "Business class "
-
-    def test_airline_name_select(self):
-        """
-        Verify correct airline has picked and selected
-        """
-        air_name = self.mt_page.airline_name_select("Blue Skies Airlines")
-        self.assertEqual(air_name, "Blue Skies Airlines")
-
-    def test_flight_det_sub(self):
-        """
-        Verify flight details has submitted
-        """
-        det_sub = self.mt_page.flight_det_sub()
-        self.assertTrue(det_sub)
-
-    def test_back_click(self):
-        """
-        Verify we have moved to front page
-        """
-        self.mt_page.back_click()
-        assert self.mt_page.title_matches()
+        self.assertEqual(service, "Business class ")
+        airline = self.mt_page.select_an_airline("Blue Skies Airlines")
+        self.assertEqual(airline, "Blue Skies Airlines")
+        self.mt_page.submit_flight_details_and_back_to_frontpage()
+        assert "Welcome: Mercury Tours" in self.driver.title
 
     def tearDown(self):
         """
