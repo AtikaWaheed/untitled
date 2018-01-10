@@ -19,7 +19,7 @@ class BasePage(object):
 
 class MainWelcomePage(BasePage):
 
-    def login_cred_submit(self, username, password):
+    def login_submit_verify(self, username, password):
         """
         Submit username and password in fields and submit
         Returned next page
@@ -42,73 +42,62 @@ class MainWelcomePage(BasePage):
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.LINK_TEXT, 'Flights'))
         ).click()
-        footer = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.footer'))
-        ).text
-        return footer
 
-    def select_passenger(self, passcount):
+    def select_passenger(self, pass_counts):
         """
         Enter any passcount in passenger field
         """
         Select(WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.NAME, 'passCount'))
-        )).select_by_visible_text(passcount)
-        return passcount
+        )).select_by_visible_text(pass_counts)
 
-    def select_departing_location(self, fromport):
+    def select_departing_location(self, from_port):
         """
         Enter from_port from field
         """
         Select(WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.NAME, 'fromPort'))
-        )).select_by_visible_text(fromport)
-        return fromport
+        )).select_by_visible_text(from_port)
 
-    def select_departing_month(self, frommonth):
+    def select_departing_month(self, from_month):
         """
         Select from_month from dropdown
         """
         Select(WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.NAME, 'fromMonth'))
-        )).select_by_visible_text(frommonth)
-        return frommonth
+        )).select_by_visible_text(from_month)
 
-    def select_departing_day(self, fromday):
+    def select_departing_day(self, from_day):
         """
         Select from_day from dropdown
         """
         Select(WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.NAME, 'fromDay'))
-        )).select_by_visible_text(fromday)
-        return fromday
+        )).select_by_visible_text(from_day)
 
-    def select_arriving_port(self, toport):
+    def select_arriving_port(self, to_port):
         """
         Select to_port
         """
         Select(WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.NAME, 'toPort'))
-        )).select_by_visible_text(toport)
-        return toport
+        )).select_by_visible_text(to_port)
 
-    def select_returning_month(self, tomonth):
+    def select_returning_month(self, to_month):
         """
         Select to_month from list
         """
         Select(WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.NAME, 'toMonth'))
-        )).select_by_visible_text(tomonth)
-        return tomonth
+        )).select_by_visible_text(to_month)
 
-    def select_returning_day(self, today):
+    def select_returning_day(self, to_day):
         """
         Select to_day from list
         """
         Select(WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.NAME, 'toDay'))
-        )).select_by_visible_text(today)
-        return today
+        )).select_by_visible_text(to_day)
 
     def select_service_class(self):
         """
@@ -118,19 +107,14 @@ class MainWelcomePage(BasePage):
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[value="Business"]'))
         ).click()
         service = self.driver.find_element_by_css_selector('input[value="Business"]')
-        from nose.tools import set_trace;set_trace()
-        print service
-        #return service
 
-
-    def select_an_airline(self, airline):
+    def select_an_airline(self, airline_name):
         """
         Choose an airline
         """
         Select(WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'select[name="airline"]'))
-        )).select_by_visible_text(airline)
-        return airline
+        )).select_by_visible_text(airline_name)
 
     def submit_flight_details_and_back_to_frontpage(self):
         """
