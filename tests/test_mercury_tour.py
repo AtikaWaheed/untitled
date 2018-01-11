@@ -12,7 +12,7 @@ class MercuryMainPage(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.mt_page = mercury_tour_page.MainWelcomePage(self.driver)
         self.mt_page.visit()
-        assert "Welcome: Mercury Tours" in self.driver.title
+        assert self.mt_page.title in self.driver.title
 
     def test01_login(self):
         """
@@ -20,6 +20,7 @@ class MercuryMainPage(unittest.TestCase):
         Verify that user can log in entering valid username and valid password
         """
         self.mt_page.login_submit_verify("admin", "admin")
+        assert self.mt_page.title in self.driver.title
 
     def test02_open_flight_vertical_by_clicking(self):
         """
@@ -29,7 +30,7 @@ class MercuryMainPage(unittest.TestCase):
         Moved back to front page
         """
         self.mt_page.open_flight_vertical_by_clicking()
-        assert "Find a Flight: Mercury Tours: " in self.driver.title
+        assert self.mt_page.find_flight in self.driver.title
         self.mt_page.select_passenger("4")
         self.mt_page.select_departing_location("Frankfurt")
         self.mt_page.select_departing_month("September")
@@ -37,10 +38,10 @@ class MercuryMainPage(unittest.TestCase):
         self.mt_page.select_arriving_port("London")
         self.mt_page.select_returning_month("April")
         self.mt_page.select_returning_day("4")
-        self.mt_page.select_service_class()
+        self.mt_page.select_business_class()
         self.mt_page.select_an_airline("Blue Skies Airlines")
         self.mt_page.submit_flight_details_and_back_to_frontpage()
-        assert "Welcome: Mercury Tours" in self.driver.title
+        assert self.mt_page.title in self.driver.title
 
     def tearDown(self):
         """

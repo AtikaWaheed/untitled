@@ -4,7 +4,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
-class BasePage(object):
+class MainWelcomePage(object):
+    title = "Welcome: Mercury Tours"
+    find_flight = "Find a Flight: Mercury Tours"
 
     def __init__(self, driver):
         """
@@ -16,22 +18,21 @@ class BasePage(object):
     def visit(self):
         self.driver.get(self.url)
 
-
-class MainWelcomePage(BasePage):
+    time_to_wait = 10
 
     def login_submit_verify(self, username, password):
         """
         Submit username and password in fields and submit
         Returned next page
         """
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, self.time_to_wait).until(
             EC.presence_of_element_located((By.NAME, 'userName'))
         ).send_keys(username)
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, self.time_to_wait).until(
             EC.presence_of_element_located((By.NAME, 'password'))
         ).send_keys(password)
         self.driver.find_element_by_name('submit').click()
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, self.time_to_wait).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'img[src="images/banner2.gif"]'))
         )
 
@@ -39,7 +40,7 @@ class MainWelcomePage(BasePage):
         """
         Move to flights vertical
         """
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, self.time_to_wait).until(
             EC.presence_of_element_located((By.LINK_TEXT, 'Flights'))
         ).click()
 
@@ -47,7 +48,7 @@ class MainWelcomePage(BasePage):
         """
         Enter any passcount in passenger field
         """
-        Select(WebDriverWait(self.driver, 10).until(
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.NAME, 'passCount'))
         )).select_by_visible_text(pass_counts)
 
@@ -55,7 +56,7 @@ class MainWelcomePage(BasePage):
         """
         Enter from_port from field
         """
-        Select(WebDriverWait(self.driver, 10).until(
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.NAME, 'fromPort'))
         )).select_by_visible_text(from_port)
 
@@ -63,7 +64,7 @@ class MainWelcomePage(BasePage):
         """
         Select from_month from dropdown
         """
-        Select(WebDriverWait(self.driver, 10).until(
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.NAME, 'fromMonth'))
         )).select_by_visible_text(from_month)
 
@@ -71,7 +72,7 @@ class MainWelcomePage(BasePage):
         """
         Select from_day from dropdown
         """
-        Select(WebDriverWait(self.driver, 10).until(
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.NAME, 'fromDay'))
         )).select_by_visible_text(from_day)
 
@@ -79,7 +80,7 @@ class MainWelcomePage(BasePage):
         """
         Select to_port
         """
-        Select(WebDriverWait(self.driver, 10).until(
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.NAME, 'toPort'))
         )).select_by_visible_text(to_port)
 
@@ -87,7 +88,7 @@ class MainWelcomePage(BasePage):
         """
         Select to_month from list
         """
-        Select(WebDriverWait(self.driver, 10).until(
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.NAME, 'toMonth'))
         )).select_by_visible_text(to_month)
 
@@ -95,24 +96,23 @@ class MainWelcomePage(BasePage):
         """
         Select to_day from list
         """
-        Select(WebDriverWait(self.driver, 10).until(
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.NAME, 'toDay'))
         )).select_by_visible_text(to_day)
 
-    def select_service_class(self):
+    def select_business_class(self):
         """
         Select Business class from dropdown
         """
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[value="Business"]'))
         ).click()
-        service = self.driver.find_element_by_css_selector('input[value="Business"]')
 
     def select_an_airline(self, airline_name):
         """
         Choose an airline
         """
-        Select(WebDriverWait(self.driver, 10).until(
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'select[name="airline"]'))
         )).select_by_visible_text(airline_name)
 
@@ -121,6 +121,6 @@ class MainWelcomePage(BasePage):
         After entering all credentials submit form and wait to open next page
         """
         self.driver.find_element_by_css_selector('input[name="findFlights"]').click()
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, self.time_to_wait).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'img[src="images/home.gif"]'))
         ).click()
