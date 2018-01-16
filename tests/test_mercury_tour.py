@@ -3,7 +3,7 @@ from selenium import webdriver
 from pages import mercury_tour_page
 
 
-class MercuryMainPage(unittest.TestCase):
+class TestMercuryMainPage(unittest.TestCase):
 
     def setUp(self):
         """
@@ -12,7 +12,6 @@ class MercuryMainPage(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.mt_page = mercury_tour_page.MainWelcomePage(self.driver)
         self.mt_page.visit()
-        assert self.mt_page.title in self.driver.title
 
     def test01_login(self):
         """
@@ -40,7 +39,8 @@ class MercuryMainPage(unittest.TestCase):
         self.mt_page.select_returning_day("4")
         self.mt_page.select_business_class()
         self.mt_page.select_an_airline("Blue Skies Airlines")
-        self.mt_page.submit_flight_details_and_back_to_frontpage()
+        self.assertTrue(self.mt_page.submit_flight_details())
+        self.mt_page.back_to_main_page()
         assert self.mt_page.title in self.driver.title
 
     def tearDown(self):

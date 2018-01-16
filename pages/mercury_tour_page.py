@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 class MainWelcomePage(object):
     title = "Welcome: Mercury Tours"
     find_flight = "Find a Flight: Mercury Tours"
+    time_to_wait = 10
 
     def __init__(self, driver):
         """
@@ -17,8 +18,6 @@ class MainWelcomePage(object):
 
     def visit(self):
         self.driver.get(self.url)
-
-    time_to_wait = 10
 
     def login_submit_verify(self, username, password):
         """
@@ -33,7 +32,7 @@ class MainWelcomePage(object):
         ).send_keys(password)
         self.driver.find_element_by_name('submit').click()
         WebDriverWait(self.driver, self.time_to_wait).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'img[src="images/banner2.gif"]'))
+            EC.presence_of_element_located((By.LINK_TEXT, 'Salon Travel'))
         )
 
     def open_flight_vertical_by_clicking(self):
@@ -116,11 +115,20 @@ class MainWelcomePage(object):
             EC.visibility_of_element_located((By.CSS_SELECTOR, 'select[name="airline"]'))
         )).select_by_visible_text(airline_name)
 
-    def submit_flight_details_and_back_to_frontpage(self):
+    def submit_flight_details(self):
         """
         After entering all credentials submit form and wait to open next page
         """
         self.driver.find_element_by_css_selector('input[name="findFlights"]').click()
+        contact = WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.presence_of_element_located((By.LINK_TEXT, 'CONTACT'))
+        )
+        return contact
+
+    def back_to_main_page(self):
+        """
+        Moving back to front door
+        """
         WebDriverWait(self.driver, self.time_to_wait).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'img[src="images/home.gif"]'))
         ).click()
