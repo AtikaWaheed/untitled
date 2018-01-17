@@ -120,10 +120,6 @@ class MainWelcomePage(object):
         After entering all credentials submit form and wait to open next page
         """
         self.driver.find_element_by_css_selector('input[name="findFlights"]').click()
-        contact = WebDriverWait(self.driver, self.time_to_wait).until(
-            EC.presence_of_element_located((By.LINK_TEXT, 'CONTACT'))
-        )
-        return contact
 
     def back_to_main_page(self):
         """

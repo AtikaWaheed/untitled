@@ -39,7 +39,8 @@ class TestMercuryMainPage(unittest.TestCase):
         self.mt_page.select_returning_day("4")
         self.mt_page.select_business_class()
         self.mt_page.select_an_airline("Blue Skies Airlines")
-        self.assertTrue(self.mt_page.submit_flight_details())
+        self.mt_page.submit_flight_details()
+        assert self.mt_page.find_flight in self.driver.title
         self.mt_page.back_to_main_page()
         assert self.mt_page.title in self.driver.title
 
