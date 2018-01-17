@@ -1,73 +1,130 @@
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
-class BasePage(object):
+class MainWelcomePage(object):
+    title = "Welcome: Mercury Tours"
+    find_flight = "Find a Flight: Mercury Tours"
+    time_to_wait = 10
 
     def __init__(self, driver):
-        # instantiate driver
+        """
+        instantiate driver
+        """
         self.driver = driver
+        self.url = "http://demo.guru99.com/selenium/newtours/"
 
+    def visit(self):
+        self.driver.get(self.url)
 
-class MainWelcomePage(BasePage):
+    def login_submit_verify(self, username, password):
+        """
+        Submit username and password in fields and submit
+        Returned next page
+        """
+        WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.presence_of_element_located((By.NAME, 'userName'))
+        ).send_keys(username)
+        WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.presence_of_element_located((By.NAME, 'password'))
+        ).send_keys(password)
+        self.driver.find_element_by_name('submit').click()
+        WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.presence_of_element_located((By.LINK_TEXT, 'Salon Travel'))
+        )
 
-    def title_matches(self):
-        # Find out Header
-        return "Welcome: Mercury Tours" in self.driver.title
+    def open_flight_vertical_by_clicking(self):
+        """
+        Move to flights vertical
+        """
+        WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.presence_of_element_located((By.LINK_TEXT, 'Flights'))
+        ).click()
 
-    def login_cred_submit(self, username, password):
-        # Give login cred and click submit
-        user_name = self.driver.find_element_by_name('userName')
-        user_name.send_keys(username)
-        password_keys = self.driver.find_element_by_name('password')
-        password_keys.send_keys(password)
-        submit = self.driver.find_element_by_name('submit')
-        submit.click()
+    def select_passenger(self, pass_counts):
+        """
+        Enter any passcount in passenger field
+        """
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.NAME, 'passCount'))
+        )).select_by_visible_text(pass_counts)
 
-    def flights_ver_click(self):
-        # Move to flights vertical
-        self.driver.find_element_by_link_text('Flights').click()
+    def select_departing_location(self, from_port):
+        """
+        Enter from_port from field
+        """
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.NAME, 'fromPort'))
+        )).select_by_visible_text(from_port)
 
-    def pass_count(self, passcount):
-        passenger = self.driver.find_element_by_name('passCount')
-        Select(passenger).select_by_visible_text(passcount)
+    def select_departing_month(self, from_month):
+        """
+        Select from_month from dropdown
+        """
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.NAME, 'fromMonth'))
+        )).select_by_visible_text(from_month)
 
-    def from_port(self, fromport):
-        departing_port = self.driver.find_element_by_name('fromPort')
-        Select(departing_port).select_by_visible_text(fromport)
+    def select_departing_day(self, from_day):
+        """
+        Select from_day from dropdown
+        """
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.NAME, 'fromDay'))
+        )).select_by_visible_text(from_day)
 
-    def from_month(self, frommonth):
-        depart_month = self.driver.find_element_by_name('fromMonth')
-        Select(depart_month).select_by_visible_text(frommonth)
+    def select_arriving_port(self, to_port):
+        """
+        Select to_port
+        """
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.NAME, 'toPort'))
+        )).select_by_visible_text(to_port)
 
-    def from_day(self, fromday):
-        depart_day = self.driver.find_element_by_name('fromDay')
-        Select(depart_day).select_by_visible_text(fromday)
+    def select_returning_month(self, to_month):
+        """
+        Select to_month from list
+        """
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.NAME, 'toMonth'))
+        )).select_by_visible_text(to_month)
 
-    def to_port(self, toport):
-        arriving_in = self.driver.find_element_by_name('toPort')
-        Select(arriving_in).select_by_visible_text(toport)
+    def select_returning_day(self, to_day):
+        """
+        Select to_day from list
+        """
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.NAME, 'toDay'))
+        )).select_by_visible_text(to_day)
 
-    def to_month(self, tomonth):
-        return_month = self.driver.find_element_by_name('toMonth')
-        Select(return_month).select_by_visible_text(tomonth)
+    def select_business_class(self):
+        """
+        Select Business class from dropdown
+        """
+        WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[value="Business"]'))
+        ).click()
 
-    def to_day(self, today):
-        return_date = self.driver.find_element_by_name('toDay')
-        Select(return_date).select_by_visible_text(today)
+    def select_an_airline(self, airline_name):
+        """
+        Choose an airline
+        """
+        Select(WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, 'select[name="airline"]'))
+        )).select_by_visible_text(airline_name)
 
-    def sevice_cred(self):
-        self.driver.find_element_by_css_selector('input[value="Business"]').click()
-
-    def airline_name_select(self, airline):
-        airline_name = self.driver.find_element_by_css_selector('select[name="airline"]')
-        Select(airline_name).select_by_visible_text(airline)
-
-    def flight_det_sub(self):
+    def submit_flight_details(self):
+        """
+        After entering all credentials submit form and wait to open next page
+        """
         self.driver.find_element_by_css_selector('input[name="findFlights"]').click()
 
-    def hotels_ver_click(self):
-        # Click hotels vertical
-        self.driver.find_element_by_link_text('Hotels').click()
-
-    def back_click(self):
-        self.driver.find_element_by_css_selector('img[src="images/home.gif"]').click()
+    def back_to_main_page(self):
+        """
+        Moving back to front door
+        """
+        WebDriverWait(self.driver, self.time_to_wait).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'img[src="images/home.gif"]'))
+        ).click()

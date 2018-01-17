@@ -2,6 +2,6 @@
 
 .xml
 
-.idea
+.idea/
 
-geckodriver.log
+*.log

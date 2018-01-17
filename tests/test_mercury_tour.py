@@ -3,38 +3,53 @@ from selenium import webdriver
 from pages import mercury_tour_page
 
 
-class MercuryMainPage(unittest.TestCase):
+class TestMercuryMainPage(unittest.TestCase):
 
     def setUp(self):
+        """
+        Setup driver and initialize class
+        """
         self.driver = webdriver.Firefox()
-        self.driver.get("http://demo.guru99.com/selenium/newtours/")
+        self.mt_page = mercury_tour_page.MainWelcomePage(self.driver)
+        self.mt_page.visit()
 
-    def test_mercury_tour(self):
-        # test mercury tour
-        mt_page = mercury_tour_page.MainWelcomePage(self.driver)
-        assert mt_page.title_matches()
-        mt_page.title_matches()
-        mt_page.login_cred_submit("admin", "admin")
-        mt_page.flights_ver_click()
-        assert self.driver.find_element_by_css_selector('img[src="images/mast_flightfinder.gif"]')
-        mt_page.pass_count("4")
-        mt_page.from_port("Frankfurt")
-        mt_page.from_month("September")
-        mt_page.from_day("5")
-        mt_page.to_port("London")
-        mt_page.to_month("March")
-        mt_page.to_day("5")
-        mt_page.sevice_cred()
-        mt_page.airline_name_select("Blue Skies Airlines")
-        mt_page.flight_det_sub()
-        assert "After flight finder - No Seats Avaialble" in self.driver.page_source
-        mt_page.hotels_ver_click()
-        assert self.driver.find_element_by_css_selector('img[src="images/mast_construction.gif"]')
-        mt_page.back_click()
+    def test01_login(self):
+        """
+        Redirected on correct page
+        Verify that user can log in entering valid username and valid password
+        """
+        self.mt_page.login_submit_verify("admin", "admin")
+        assert self.mt_page.title in self.driver.title
+
+    def test02_open_flight_vertical_by_clicking(self):
+        """
+        Flights vertical got clicked and page is correct
+        Correct values has been given
+        Submitted Form
+        Moved back to front page
+        """
+        self.mt_page.open_flight_vertical_by_clicking()
+        assert self.mt_page.find_flight in self.driver.title
+        self.mt_page.select_passenger("4")
+        self.mt_page.select_departing_location("Frankfurt")
+        self.mt_page.select_departing_month("September")
+        self.mt_page.select_departing_day("5")
+        self.mt_page.select_arriving_port("London")
+        self.mt_page.select_returning_month("April")
+        self.mt_page.select_returning_day("4")
+        self.mt_page.select_business_class()
+        self.mt_page.select_an_airline("Blue Skies Airlines")
+        self.mt_page.submit_flight_details()
+        assert self.mt_page.find_flight in self.driver.title
+        self.mt_page.back_to_main_page()
+        assert self.mt_page.title in self.driver.title
 
     def tearDown(self):
+        """
+        Verify page has closed
+        """
         self.driver.close()
+
 
 if __name__ == "__main__":
     unittest.main()
-
